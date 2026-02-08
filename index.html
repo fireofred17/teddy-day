@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 4: Teddy Day 🧸</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --red: #ff4d6d; --white: #ffffff; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            height: 100vh; width: 100vw; overflow: hidden; 
+            font-family: 'Poppins', sans-serif; background: #000; 
+        }
+
+        .slide { 
+            position: absolute; inset: 0; display: flex; flex-direction: column; 
+            align-items: center; justify-content: center; text-align: center;
+            opacity: 0; visibility: hidden; transition: opacity 1.5s ease-in-out;
+        }
+        .slide.active { opacity: 1; visibility: visible; }
+
+        /* DAY 1: ROSE (RAINBOW) */
+        .rainbow-bg {
+            background: linear-gradient(45deg, #ff5f6d, #ffc371, #ff5f6d);
+            background-size: 200% 200%;
+            animation: rainbowFlow 5s ease infinite;
+        }
+        @keyframes rainbowFlow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+        /* DAY 2: PROPOSE */
+        .propose-bg { background: linear-gradient(135deg, #1a062d 0%, #4b0082 100%); }
+
+        /* DAY 3: CHOCOLATE */
+        .choc-bg { background: #23120b; overflow: hidden; }
+        .choc-wave { position: absolute; bottom: -100%; left: 0; width: 100%; height: 100%; background: #3c1e08; transition: bottom 4s cubic-bezier(0.4, 0, 0.2, 1); z-index: -1; }
+        .active .choc-wave { bottom: 0; }
+
+        /* DAY 4: TEDDY (SOFT BLUSH) */
+        .teddy-bg { background: linear-gradient(180deg, #ffb3c1 0%, #ff85a1 100%); }
+
+        #heart-focus { font-size: 5rem; transition: transform 2.5s ease-in, opacity 2s; }
+        .zoom-heart { transform: scale(100); opacity: 0; }
+
+        .btn { padding: 18px 40px; border-radius: 50px; border: none; font-weight: 600; background: white; color: var(--red); cursor: pointer; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+
+        .heart-loader {
+            position: relative; width: 120px; height: 110px;
+            background: rgba(255, 255, 255, 0.2);
+            clip-path: path('M60 102c-2 0-5-4-18-14C18 66 0 48 0 30 0 12 14 0 30 0c10 0 22 6 30 14 8-8 20-14 30-14 16 0 30 12 30 30 0 18-18 36-42 58-13 10-16 14-18 14z');
+            margin-bottom: 20px;
+        }
+        .heart-fill-inner { position: absolute; bottom: 0; width: 100%; height: 0%; background: #fff; transition: height 6s cubic-bezier(0.4, 0, 0.2, 1); }
+        .status-text { color: white; opacity: 0; transition: 2s; font-size: 0.9rem; letter-spacing: 1px; }
+        .show-text { opacity: 0.8; }
+    </style>
+</head>
+<body>
+
+<audio id="mySong" loop playsinline><source src="https://fireofred17.github.io/VALENTINE_SPECIAL/tum-se.mp3" type="audio/mpeg"></audio>
+
+<div class="slide active" id="s1">
+    <h1 style="color: white; font-family: 'Playfair Display'; font-size: 3.5rem;">Hii Manuu...</h1>
+    <button class="btn" style="margin-top: 40px;" onclick="startAutoJourney()">Open Day 4</button>
+</div>
+
+<div class="slide" id="s2"><div id="heart-focus">❤️</div></div>
+
+<div class="slide rainbow-bg" id="s3">
+    <div style="font-size: 5rem;">🌹</div>
+    <h2 style="color: white; font-family: 'Playfair Display'; font-size: 2.5rem; margin-top: 10px;">Rose Day</h2>
+    <p style="color: white; margin-top: 15px; font-weight: 400; font-size: 1.1rem; padding: 0 35px; line-height: 1.5; font-style: italic; font-family: 'Playfair Display';">"They say roses are the symbol of beauty, but looking at you, even the most perfect rose feels like a second thought."</p>
+</div>
+
+<div class="slide propose-bg" id="s4">
+    <div style="font-size: 5rem;">💍</div>
+    <h2 style="color: #bf77ff; font-family: 'Playfair Display'; font-size: 2.5rem;">Propose Day</h2>
+    <p style="color: white; margin-top: 15px; font-weight: 400; font-size: 1.1rem; padding: 0 35px; line-height: 1.5;">"I don't just want you for a day. I want to be the person who chooses you, every single morning, for the rest of my life."</p>
+</div>
+
+<div class="slide choc-bg" id="s5">
+    <div class="choc-wave"></div>
+    <div style="font-size: 5rem; z-index: 10;">🍫</div>
+    <h2 style="color: #d2691e; font-family: 'Playfair Display'; font-size: 2.5rem; z-index: 10;">Chocolate Day</h2>
+    <p style="color: white; margin-top: 15px; font-weight: 400; font-size: 1.1rem; padding: 0 35px; line-height: 1.5; z-index: 10;">"Just like chocolate, you make everything in my life taste a little bit better and a whole lot sweeter."</p>
+</div>
+
+<div class="slide teddy-bg" id="s6">
+    <div style="font-size: 6rem;">🧸</div>
+    <h2 style="color: white; font-family: 'Playfair Display'; font-size: 3rem;">Teddy Day</h2>
+    <p style="color: white; margin-top: 20px; font-weight: 400; font-size: 1.2rem; padding: 0 35px; line-height: 1.6;">
+        "A soft reminder that even when I'm not there, you are always safe, protected, and deeply loved by me."
+    </p>
+</div>
+
+<div class="slide" id="s7" style="background: #0d0204;">
+    <div class="heart-loader"><div class="heart-fill-inner" id="mainFill"></div></div>
+    <div class="status-text" id="statusMsg">
+        <p>Loading love: 56%</p>
+        <p style="font-size: 0.7rem; margin-top: 15px; text-transform: uppercase;">Halfway to a full heart...</p>
+    </div>
+</div>
+
+<script>
+    const song = document.getElementById('mySong');
+    function startAutoJourney() {
+        song.play();
+        showSlide('s1', 's2');
+        setTimeout(() => { document.getElementById('heart-focus').classList.add('zoom-heart'); }, 800);
+        setTimeout(() => { showSlide('s2', 's3'); }, 3000); // Rose
+        setTimeout(() => { showSlide('s3', 's4'); }, 8500); // Propose
+        setTimeout(() => { showSlide('s4', 's5'); }, 14000); // Chocolate
+        setTimeout(() => { showSlide('s5', 's6'); }, 19500); // Teddy
+        setTimeout(() => {
+            showSlide('s6', 's7');
+            setTimeout(() => {
+                document.getElementById('mainFill').style.height = "56%"; 
+                setTimeout(() => { document.getElementById('statusMsg').classList.add('show-text'); }, 4000); 
+            }, 800);
+        }, 25500); 
+    }
+    function showSlide(curr, next) { document.getElementById(curr).classList.remove('active'); document.getElementById(next).classList.add('active'); }
+</script>
+</body>
+</html>
